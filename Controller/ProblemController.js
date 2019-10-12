@@ -63,7 +63,7 @@ exports.findOne = (req, res) => {
 // Update a PROBLEM identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if(!req.body.description) {
+    if(!req.body.dontlike_problem) {
         return res.status(400).send({
             message: "Problem description can not be empty"
         });
@@ -71,10 +71,7 @@ exports.update = (req, res) => {
 
     // Find Problem and update it with the request body
     Problem.findByIdAndUpdate(req.params.problemId, {
-        description :req.body.description,
-        city : req.body.city,
-        date : req.body.date,
-        person : req.body.person,
+   
         dontlike_problem :req.body.dontlike_problem,
         like_problem : req.body.like_problem
     }, {new: true})
