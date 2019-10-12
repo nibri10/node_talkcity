@@ -84,7 +84,7 @@ exports.update = (req, res) => {
                     message: "Problem not found with id " + req.params.problemId
                 });
             }
-            res.send(note);
+            res.send(problem);
         }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
