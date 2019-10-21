@@ -8,6 +8,10 @@ const UserSchema = mongoose.Schema({
         name:{
             type:String,
             require:true
+        },
+        uniqueId:{
+            type:String,
+            require:true
         }
      
 

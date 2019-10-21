@@ -45,6 +45,9 @@ router.put('/user/:userId', user.update);
 // Delete a User with userId
 router.delete('/user/:user', user.delete);
 
+// get a user with registred in mac adress in api
+router.get('/user/:uniqueId', user.findMac);
+
 
 module.exports = router;
 

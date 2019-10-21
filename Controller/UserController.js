@@ -8,7 +8,8 @@ exports.create =  (req,res) =>{
     }
     const user = new User({
     number :req.body.number,
-    name : req.body.name
+    name : req.body.name,
+    uniqueId : req.body.uniqueId
     });
     user.save()
         .then(data=>{
@@ -54,6 +55,19 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.findMac = (req, res)=>{
+
+    const urlParameter = req.params.uniqueId;
+
+    User.find({'uniqueId': urlParameter},(err,user)=>{
+        if(err){
+            return handle(err);
+        }
+        else
+            res.send(user);
+    });
+}
+
 // Update a User identified by the userId in the request
 exports.update = (req, res) => {
     // Validate Request
@@ -66,7 +80,8 @@ exports.update = (req, res) => {
     // Find User and update it with the request body
     User.findByIdAndUpdate(req.params.userId, {
       number :req.body.number,
-      name : req.body.name
+      name : req.body.name, 
+      uniqueId: req.body.uniqueId
     }, {new: true})
         .then(user => {
             if(!user) {
