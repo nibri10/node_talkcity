@@ -19,11 +19,13 @@ const ProblemSchema = mongoose.Schema({
         },
         like_problem:{
             type:String,
-            require:false
+            require:false,
+            default:'0'
         },
         dontlike_problem:{
             type:String,
-            require:false
+            require:false,
+            default:'0'
         }
 
 });

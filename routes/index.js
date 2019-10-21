@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
 });
 
 const problem = require('../Controller/ProblemController');
+const user = require('../Controller/UserController');
 
 // Create a new problem
 router.post('/problem', problem.create);
@@ -27,6 +28,22 @@ router.delete('/problem/:problemId', problem.delete);
 
 // Retrieve all Problems where city
 router.get('/problem/city/:cityUser',problem.findCity);
+
+
+// Create a new Note
+router.post('/user', user.create);
+
+// Retrieve all Notes
+router.get('/user', user.findAll);
+
+// Retrieve a single Note with noteId
+router.get('/user/:userId', user.findOne);
+
+// Update a Note with noteId
+router.put('/user/:userId', user.update);
+
+// Delete a Note with noteId
+router.delete('/user/:user', user.delete);
 
 
 module.exports = router;
