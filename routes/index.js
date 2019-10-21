@@ -30,19 +30,19 @@ router.delete('/problem/:problemId', problem.delete);
 router.get('/problem/city/:cityUser',problem.findCity);
 
 
-// Create a new Note
+// Create a new user
 router.post('/user', user.create);
 
-// Retrieve all Notes
+// Retrieve all User
 router.get('/user', user.findAll);
 
-// Retrieve a single Note with noteId
+// Retrieve a single User with UserId
 router.get('/user/:userId', user.findOne);
 
-// Update a Note with noteId
+// Update a User with UserId
 router.put('/user/:userId', user.update);
 
-// Delete a Note with noteId
+// Delete a User with userId
 router.delete('/user/:user', user.delete);
 
 
