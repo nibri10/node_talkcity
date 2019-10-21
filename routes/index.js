@@ -10,20 +10,23 @@ router.get('/', (req, res, next) => {
 
 const problem = require('../Controller/ProblemController');
 
-// Create a new Note
+// Create a new problem
 router.post('/problem', problem.create);
 
-// Retrieve all Notes
+// Retrieve all problems
 router.get('/problem', problem.findAll);
 
-// Retrieve a single Note with noteId
+// Retrieve a single Problem with problemId
 router.get('/problem/:problemId', problem.findOne);
 
-// Update a Note with noteId
+// Update a Problem with problemId
 router.put('/problem/:problemId', problem.update);
 
-// Delete a Note with noteId
+// Delete a Note with problemId
 router.delete('/problem/:problemId', problem.delete);
+
+// Retrieve all Problems where city
+router.get('/problem/city/:cityUser',problem.findCity);
 
 
 module.exports = router;

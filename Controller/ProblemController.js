@@ -60,6 +60,18 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.findCity = (req,res) =>{
+    const urlParameter = req.params.cityUser;
+
+    Problem.find({'city':urlParameter},(err,problem)=>{
+        if(err){
+            return handle(err);
+        }
+        else
+            res.send(problem);
+    })
+};
+
 // Update a PROBLEM identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request
