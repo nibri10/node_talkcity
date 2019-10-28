@@ -1,4 +1,4 @@
-const Problem = require('../model/Problem');
+const MacAdress = require('../model/MacAdress');
 
 exports.create =  (req,res) =>{
     if(!req.body.description){
@@ -6,17 +6,15 @@ exports.create =  (req,res) =>{
             message: "Problem content can not be empty"
         });
     }
-    const problem = new Problem({
-    description :req.body.description,
-    city : req.body.city,
-    date : req.body.date,
-    person : req.body.person,
-    dontlike_problem :req.body.dontlike_problem,
-    like_problem : req.body.like_problem
+    const mac = new MacAdress({
+        idproblem:req.body.idproblem,
+        macAdress:req.body.macAdress,
+        dontlike_problem :req.body.dontlike_problem,
+        like_problem : req.body.like_problem
 
 
     });
-    problem.save()
+    mac.save()
         .then(data=>{
             res.send(data);
         }).catch(err =>{
@@ -28,9 +26,9 @@ exports.create =  (req,res) =>{
 
 
 exports.findAll = (req, res) => {
-    Problem.find()
-        .then(problems => {
-            res.send(problems);
+    MacAdress.find()
+        .then(macs => {
+            res.send(macs);
         }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving problems."
@@ -40,37 +38,27 @@ exports.findAll = (req, res) => {
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-    Problem.findById(req.params.problemId)
-        .then(problem => {
-            if(!problem) {
+    MacAdress.findById(req.params.macId)
+        .then(mac => {
+            if(!mac) {
                 return res.status(404).send({
-                    message: "Problem not found with id " + req.params.problemId
+                    message: "Problem not found with id " + req.params.macId
                 });
             }
-            res.send(problem);
+            res.send(mac);
         }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Problem not found with id " + req.params.problemId
+                message: "Problem not found with id " + req.params.macId
             });
         }
         return res.status(500).send({
-            message: "Error retrieving problem with id " + req.params.problemId
+            message: "Error retrieving problem with id " + req.params.macId
         });
     });
 };
 
-exports.findCity = (req,res) =>{
-    const urlParameter = req.params.cityUser;
 
-    Problem.find({'city':urlParameter},(err,problem)=>{
-        if(err){
-            return handle(err);
-        }
-        else
-            res.send(problem);
-    })
-};
 
 // Update a PROBLEM identified by the noteId in the request
 exports.update = (req, res) => {
@@ -82,48 +70,50 @@ exports.update = (req, res) => {
     }
 
     // Find Problem and update it with the request body
-    Problem.findByIdAndUpdate(req.params.problemId, {
-   
+    MacAdress.findByIdAndUpdate(req.params.macId, {
+
+        idproblem:req.body.idproblem,
+        macAdress:req.body.macAdress,
         dontlike_problem :req.body.dontlike_problem,
         like_problem : req.body.like_problem
     }, {new: true})
-        .then(problem => {
-            if(!problem) {
+        .then(mac => {
+            if(!mac) {
                 return res.status(404).send({
-                    message: "Problem not found with id " + req.params.problemId
+                    message: "Problem not found with id " + req.params.macId
                 });
             }
             res.send(problem);
         }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Problem not found with id " + req.params.problemId
+                message: "Problem not found with id " + req.params.macId
             });
         }
         return res.status(500).send({
-            message: "Error updating problem with id " + req.params.problemId
+            message: "Error updating problem with id " + req.params.macId
         });
     });
 };
 
-// Delete a note with the specified noteId in the request
+// Delete a note with the specified macId in the request
 exports.delete = (req, res) => {
-    Problem.findByIdAndRemove(req.params.problemId)
-        .then(problem => {
-            if(!problem) {
+    MacAdress.findByIdAndRemove(req.params.macId)
+        .then(mac => {
+            if(!mac) {
                 return res.status(404).send({
-                    message: "Problem not found with id " + req.params.problemId
+                    message: "Problem not found with id " + req.params.macId
                 });
             }
             res.send({message: "Problem deleted successfully!"});
         }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "Problem not found with id " + req.params.problemId
+                message: "Problem not found with id " + req.params.macId
             });
         }
         return res.status(500).send({
-            message: "Problem not delete note with id " + req.params.problemId
+            message: "Problem not delete note with id " + req.params.macId
         });
     });
 };

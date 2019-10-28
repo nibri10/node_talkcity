@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
 
 const problem = require('../Controller/ProblemController');
 const user = require('../Controller/UserController');
+const macadress = require('../Controller/MacAdressController');
 
 // Create a new problem
 router.post('/problem', problem.create);
@@ -48,6 +49,21 @@ router.delete('/user/:user', user.delete);
 // get a user with registred in mac adress in api
 router.get('/user/mac/:uniqueId', user.findMac);
 
+
+// Create a new mac
+router.post('/mac', macadress.create);
+
+// Retrieve all macs
+router.get('/mac', macadress.findAll);
+
+// Retrieve a single MacAdress with macId
+router.get('/mac/:macId', macadress.findOne);
+
+// Update a Problem with macId
+router.put('/mac/:macId', macadress.update);
+
+// Delete a Note with macId
+router.delete('/mac/:macId', macadress.delete);
 
 module.exports = router;
 
