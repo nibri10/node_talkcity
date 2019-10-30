@@ -2,15 +2,16 @@ const mongoose = require('mongoose');
 
 const MacSchema = mongoose.Schema({
     idproblem:{
-        type:String,
-        require:true
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Problem"
     },
 
     macAdress:{
-        type:String,
-        require:true
+       type: mongoose.Schema.Types.ObjectId, 
+       ref: "User"
 
     },
+  
     like_problem:{
         type:String,
         require:true
@@ -20,6 +21,7 @@ const MacSchema = mongoose.Schema({
         type:String,
         require:true
     }
+
 });
 
 module.exports = mongoose.model('Mac', MacSchema);
