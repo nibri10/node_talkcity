@@ -1,9 +1,9 @@
 const MacAdress = require('../model/MacAdress');
 
 exports.create =  (req,res) =>{
-    if(!req.body.description){
+    if(!req.body.idproblem){
         return res.status(400).send({
-            message: "Problem content can not be empty"
+            message: "Mac content can not be empty"
         });
     }
     const mac = new MacAdress({
@@ -65,7 +65,7 @@ exports.update = (req, res) => {
     // Validate Request
     if(!req.body.dontlike_problem) {
         return res.status(400).send({
-            message: "Problem description can not be empty"
+            message: "Mac description can not be empty"
         });
     }
 
