@@ -8,9 +8,8 @@ exports.create =  (req,res) =>{
     }
     const mac = new MacAdress({
         idproblem:req.body.idproblem,
-        macAdress:req.body.macAdress,
-        dontlike_problem :req.body.dontlike_problem,
-        like_problem : req.body.like_problem
+        macAdress:req.body.macAdress
+        
 
 
     });
@@ -63,7 +62,7 @@ exports.findOne = (req, res) => {
 // Update a PROBLEM identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if(!req.body.dontlike_problem) {
+    if(!req.body.idproblem) {
         return res.status(400).send({
             message: "Mac description can not be empty"
         });
@@ -73,9 +72,8 @@ exports.update = (req, res) => {
     MacAdress.findByIdAndUpdate(req.params.macId, {
 
         idproblem:req.body.idproblem,
-        macAdress:req.body.macAdress,
-        dontlike_problem :req.body.dontlike_problem,
-        like_problem : req.body.like_problem
+        macAdress:req.body.macAdress
+        
     }, {new: true})
         .then(mac => {
             if(!mac) {
