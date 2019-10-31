@@ -37,7 +37,7 @@ exports.findAll = (req, res) => {
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-    MacAdress.findById(req.params.macId)
+    MacAdress.findById(req.params.macAdress)
         .then(mac => {
             if(!mac) {
                 return res.status(404).send({
