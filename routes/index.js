@@ -65,6 +65,10 @@ router.put('/mac/:macAdress', macadress.update);
 // Delete a Note with macId
 router.delete('/mac/:macAdress', macadress.delete);
 
+// get a user with registred in mac adress in api
+router.get('/mac/mac/:macAdress', macadress.findMac);
+
+
 module.exports = router;
 
 
