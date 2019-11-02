@@ -57,7 +57,18 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.findMac = (req, res)=>{
 
+    const urlParameter = req.params.uniqueId;
+
+   MacAdress.find({'macAdress': urlParameter},(err,user)=>{
+        if(err){
+            return handle(err);
+        }
+        else
+            res.send(user);
+    });
+}
 
 // Update a PROBLEM identified by the noteId in the request
 exports.update = (req, res) => {
