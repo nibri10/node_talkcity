@@ -57,13 +57,13 @@ router.post('/mac', macadress.create);
 router.get('/mac', macadress.findAll);
 
 // Retrieve a single MacAdress with macId
-router.get('/mac/:macId', macadress.findOne);
+router.get('/mac/:macAdress', macadress.findOne);
 
 // Update a Problem with macId
-router.put('/mac/:macId', macadress.update);
+router.put('/mac/:macAdress', macadress.update);
 
 // Delete a Note with macId
-router.delete('/mac/:macId', macadress.delete);
+router.delete('/mac/:macAdress', macadress.delete);
 
 module.exports = router;
 
