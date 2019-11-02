@@ -59,14 +59,14 @@ exports.findOne = (req, res) => {
 
 exports.findMac = (req, res)=>{
 
-    const urlParameter = req.params.uniqueId;
+    const urlParameter = req.params.macAdress;
 
-   MacAdress.find({'macAdress': urlParameter},(err,user)=>{
+   MacAdress.find({'macAdress': urlParameter},(err,mac)=>{
         if(err){
             return handle(err);
         }
         else
-            res.send(user);
+            res.send(mac);
     });
 }
 
